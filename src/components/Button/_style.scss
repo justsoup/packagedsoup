@@ -26,16 +26,20 @@
     }
   }
   
-  .btn-lg {
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-border-radius-lg);
+  .btn-la {
+    @include button-size($btn-padding-y-la, $btn-padding-x-la, $btn-font-size-la, $btn-border-radius-la);
+  }
+
+  .btn-nor{
+    @include button-size($btn-padding-y-nor, $btn-padding-x-nor, $btn-font-size-nor, $btn-border-radius-nor);
   }
   
   .btn-sm {
     @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-border-radius-sm);
   }
   
-  .btn-primary {
-    @include button-style($primary, $primary, $white)
+  .btn-ordinary {
+    @include button-style($ordinary, $ordinary, $white)
   }
   
   .btn-danger {
@@ -43,7 +47,7 @@
   }
   
   .btn-default {
-    @include button-style($white, $gray-400, $body-color, $white, $primary, $primary)
+    @include button-style($white, $gray-400, $body-color, $white, $ordinary, $ordinary)
   }
   
   .btn-link {

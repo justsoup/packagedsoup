@@ -21,19 +21,17 @@ $green:   #52c41a !default;
 $teal:    #20c997 !default;
 $cyan:    #17a2b8 !default;
 
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$ordinary:      $blue !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
-$light:         $gray-100 !default;
+$light:         $teal !default;
 $dark:          $gray-800 !default;
 
 $theme-colors: 
 (
-  "primary":    $primary,
-  "secondary":  $secondary,
+  "ordinary":   $ordinary,
   "success":    $success,
   "info":       $info,
   "warning":    $warning,
@@ -48,7 +46,8 @@ $font-family-base:            $font-family-sans-serif !default;
 
 // 字体大小
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`
-$font-size-lg:                $font-size-base * 1.25 !default;
+$font-size-la:                $font-size-base * 1.25 !default;
+$font-size-nor:               $font-size-base *  1 !default;
 $font-size-sm:                $font-size-base * .875 !default;
 $font-size-root:              null !default;
 
@@ -62,7 +61,7 @@ $font-weight-base:            $font-weight-normal !default;
 
 // 行高
 $line-height-base:            1.5 !default;
-$line-height-lg:              2 !default;
+$line-height-la:              2 !default;
 $line-height-sm:              1.25 !default;
 
 // 标题大小
@@ -74,7 +73,7 @@ $h5-font-size:                $font-size-base * 1.25 !default;
 $h6-font-size:                $font-size-base !default;
 
 // 链接
-$link-color:                              $primary !default;
+$link-color:                              $ordinary !default;
 $link-decoration:                         none !default;
 $link-hover-color:                        darken($link-color, 15%) !default;
 $link-hover-decoration:                   underline !default;
@@ -167,13 +166,14 @@ $border-width:                1px !default;
 $border-color:                $gray-300 !default;
 
 $border-radius:               .25rem !default;
-$border-radius-lg:            .3rem !default;
+$border-radius-la:            .3rem !default;
+$border-radius-nor:           .25rem !default;
 $border-radius-sm:            .2rem !default;
 
 // 不同类型的 box shadow
 $box-shadow-sm:               0 .125rem .25rem rgba($black, .075) !default;
 $box-shadow:                  0 .5rem 1rem rgba($black, .15) !default;
-$box-shadow-lg:               0 1rem 3rem rgba($black, .175) !default;
+$box-shadow-la:               0 1rem 3rem rgba($black, .175) !default;
 $box-shadow-inset:            inset 0 1px 2px rgba($black, .075) !default;
 
 // 按钮
@@ -190,9 +190,13 @@ $btn-padding-y-sm:            .25rem !default;
 $btn-padding-x-sm:            .5rem !default;
 $btn-font-size-sm:            $font-size-sm !default;
 
-$btn-padding-y-lg:            .5rem !default;
-$btn-padding-x-lg:            1rem !default;
-$btn-font-size-lg:            $font-size-lg !default;
+$btn-padding-y-nor:            .4rem !default;
+$btn-padding-x-nor:            .75rem !default;
+$btn-font-size-nor:            $font-size-nor !default;
+
+$btn-padding-y-la:            .5rem !default;
+$btn-padding-x-la:            1rem !default;
+$btn-font-size-la:            $font-size-la !default;
 
 // 按钮边框
 $btn-border-width:            $border-width !default;
@@ -209,7 +213,8 @@ $btn-link-disabled-color:     $gray-600 !default;
 
 // 按钮 radius
 $btn-border-radius:           $border-radius !default;
-$btn-border-radius-lg:        $border-radius-lg !default;
+$btn-border-radius-la:        $border-radius-la !default;
+$btn-border-radius-nor:        $border-radius-nor !default;
 $btn-border-radius-sm:        $border-radius-sm !default;
 
 $btn-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out !default;
@@ -223,7 +228,7 @@ $menu-transition:              color .15s ease-in-out, border-color .15s ease-in
 // menu-item
 $menu-item-padding-y:          .5rem !default;
 $menu-item-padding-x:          1rem !default;
-$menu-item-active-color:       $primary !default;
+$menu-item-active-color:       $ordinary !default;
 $menu-item-active-border-width: 2px !default;
 $menu-item-disabled-color:     $gray-600 !default;
 
@@ -243,9 +248,9 @@ $input-padding-y-sm:                    $btn-padding-y-sm !default;
 $input-padding-x-sm:                    $btn-padding-x-sm !default;
 $input-font-size-sm:                    $btn-font-size-sm !default;
 
-$input-padding-y-lg:                    $btn-padding-y-lg !default;
-$input-padding-x-lg:                    $btn-padding-x-lg !default;
-$input-font-size-lg:                    $btn-font-size-lg !default;
+$input-padding-y-la:                    $btn-padding-y-la !default;
+$input-padding-x-la:                    $btn-padding-x-la !default;
+$input-font-size-la:                    $btn-font-size-la !default;
 
 $input-bg:                              $white !default;
 $input-disabled-bg:                     $gray-200 !default;
@@ -257,14 +262,14 @@ $input-border-width:                    $border-width !default;
 $input-box-shadow:                      $box-shadow-inset !default;
 
 $input-border-radius:                   $border-radius !default;
-$input-border-radius-lg:                $border-radius-lg !default;
+$input-border-radius-la:                $border-radius-la !default;
 $input-border-radius-sm:                $border-radius-sm !default;
 
 $input-focus-bg:                        $input-bg !default;
-$input-focus-border-color:              lighten($primary, 25%) !default;
+$input-focus-border-color:              lighten($ordinary, 25%) !default;
 $input-focus-width:                     .2rem !default;
 $input-focus-color:                     $input-color !default;
-$input-focus-shadow-color:              rgba($primary, .25) !default;
+$input-focus-shadow-color:              rgba($ordinary, .25) !default;
 $input-focus-box-shadow:                0 0 0 $input-focus-width $input-focus-shadow-color !default;
 
 $input-placeholder-color:               $gray-600 !default;

@@ -1,44 +1,64 @@
 import React from 'react'
 import classNames from 'classnames'
+import '../../styles/index.scss'
+
 
 export enum ButtonSize {
-  Large = 'lg',
-  Small = 'sm',
+  Large = 'la',
+  Normal= 'nor',
+  Small = 'sm'
 }
 
 export enum ButtonType {
-  Primary = 'primary',
-  Default = 'default',
+  Ordinary = 'ordinary',
   Danger = 'danger',
-  Link = 'link',
+  Default = 'default',
+  Link = 'link'
 }
 
 interface BaseButtonProps {
   className?: string
   disabled?: boolean
-  size?: ButtonSize
+  btnSize?: ButtonSize
   btnType?: ButtonType
-  children: React.ReactNode
   href?: string
+  children: React.ReactNode
 }
 
-const Button: React.FC<BaseButtonProps> = (props) => {
-  const { btnType, disabled, size, children, href } = props
-  const classes = classNames('btn', {
-    [`btn-${btnType}`]: btnType,
-    [`btn-${size}`]: size,
-    disabled: btnType === ButtonType.Link && disabled,
-  })
+type NativeButtonProps=BaseButtonProps & React.ButtonHTMLAttributes<HTMLElement>
+type AnchorButtonProps=BaseButtonProps & React.AnchorHTMLAttributes<HTMLElement>
+type ButtonProps= Partial<NativeButtonProps & AnchorButtonProps>
+const Button:React.FC<ButtonProps>=(props)=>{
+  const {
+    className,
+    disabled,
+    btnSize,
+    btnType,
+    href,
+    children,
+    ...restProps
+  }=props
 
-  if (btnType === ButtonType.Link && href) {
+  const classes = classNames('btn',className,{
+    [`btn-${btnType}`]: btnType,
+    [`btn-${btnSize}`]: btnSize,
+    'disabled': disabled
+  })
+  if(btnType===ButtonType.Link && href){
     return (
-      <a className={classes} href={href}>
-        {children}
-      </a>
+      <a 
+      className={classes}
+      href={href}
+      {...restProps}
+    >{children}</a>
     )
-  } else {
+  }else{
     return (
-      <button className={classes} disabled={disabled}>
+      <button
+        className={classes}
+        disabled={disabled}
+        {...restProps}
+      >
         {children}
       </button>
     )
@@ -48,6 +68,7 @@ const Button: React.FC<BaseButtonProps> = (props) => {
 Button.defaultProps = {
   disabled: false,
   btnType: ButtonType.Default,
+  btnSize:ButtonSize.Large
 }
 
 export default Button
