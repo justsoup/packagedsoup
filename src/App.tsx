@@ -8,10 +8,10 @@ import SubMenu from './components/Menu/subMenu'
 function App() {
   return (
     <div className="App">
-        <Menu defaultIndex={0} mode={'horizontal'}>
-          <MenuItem index={0}>
-            cool link
-          </MenuItem>
+        <Menu defaultIndex={'0'} mode={'vertical'}
+        onSelect={(index)=>{console.log(index) }}
+        defaultOpenSubMenu={['4']}
+        >
           <MenuItem>
             cool link
           </MenuItem>
@@ -19,14 +19,14 @@ function App() {
             cool link
           </MenuItem>
           <MenuItem>
-            cool link
+            xyz
           </MenuItem>
-          <SubMenu title={'submenu'}>
+          <SubMenu title={'download'}>
             <MenuItem>
-              sub111
+            download1
             </MenuItem>
             <MenuItem>
-              sub111 
+            download2
             </MenuItem>
             <MenuItem>
               sub111

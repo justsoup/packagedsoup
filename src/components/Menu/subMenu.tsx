@@ -5,10 +5,9 @@ import {MenuItemProps} from '../Menu/menuItem'
 
 //interface SubMenu
 export interface SubMenuProps{
-    index?:number;
+    index?:string;
     title:string;
     className?:string;
-    style?:React.CSSProperties;
     children?:React.ReactNode;
 }
 
@@ -16,11 +15,17 @@ export interface SubMenuProps{
 const SubMenu:React.FC<SubMenuProps>=(props)=>{
     const {index,title,className,children}=props
 
-    //set up switch
-    const [menuOpen,setMenuOpen]=useState(false)
+
 
     //get Menu share context
     const context=useContext(MenuContent)
+
+    const openSubMenu = context.defaultOpenSubMenu as Array<string>;
+    const isOpened= (index && context.mode === 'vertical') ? openSubMenu.includes(index):false
+
+
+    //set up switch
+    const [menuOpen,setMenuOpen]=useState(isOpened)
 
     //set up SubMenu display
     const subMenuClasses=classNames('submenu',{
@@ -38,12 +43,21 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
         setMenuOpen(!menuOpen)
     }
 
+    let timer:any
+    const handleMouse=(e:React.MouseEvent,toggle:boolean)=>{
+        clearTimeout(timer)
+        e.preventDefault()
+        timer=setTimeout(()=>{
+            setMenuOpen(toggle)
+        },300)
+    }
+
     //instantiate Menu item and return item
     const renderChildren=()=>{
         const childrenComponent=React.Children.map(children,(item,i)=>{
             const childElement=item as FunctionComponentElement<MenuItemProps>
             if(childElement.type.displayName==='MenuItem'){
-                return childElement;
+                return React.cloneElement(childElement,{index:`${index}-${i}`});
             }else{
                 console.error('waring: Menu has a child whild which is not a MenuItem');
             }
@@ -58,10 +72,19 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
         )
     }
 
+    const clickEvent = context.mode === 'vertical' ? {
+        onClick: handleClick,
+    } : {}
+
+    const hoveEvent = context.mode !== 'vertical' ? {
+        onMouseEnter: (e: React.MouseEvent) => { handleMouse(e, true) },
+        onMouseLeave: (e: React.MouseEvent) => { handleMouse(e, false) },
+    } : {}
+
     //return SubMenu HTML and CSS
     return (
-        <li key={index} className={classes}>
-            <div className="submenu-title" onClick={handleClick}>
+        <li key={index} className={classes} {...hoveEvent}>
+            <div className="submenu-title" {...clickEvent}>
                 {title}
             </div>
             {renderChildren()}
@@ -71,7 +94,7 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
 
 //set up SubMenu default props
 SubMenu.defaultProps={
-    index:0,
+    index:'0',
     title:'justsoup',
 }
 
