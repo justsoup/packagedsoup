@@ -4,11 +4,14 @@ import './styles/index.scss'
 import Menu from './components/Menu/menu'
 import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
+import Icon from './components/Icon/icon'
+
 
 function App() {
   return (
     <div className="App">
-        <Menu defaultIndex={'0'} mode={'vertical'}
+        <Icon icon='address-card' theme='danger' size='10x' />
+        <Menu defaultIndex={'0'} mode={'horizontal'}
         onSelect={(index)=>{console.log(index) }}
         defaultOpenSubMenu={['4']}
         >
@@ -18,10 +21,10 @@ function App() {
           <MenuItem>
             cool link
           </MenuItem>
-          <MenuItem>
+          <MenuItem disabled={true}>
             xyz
           </MenuItem>
-          <SubMenu title={'download'}>
+          <SubMenu title={'e'}>
             <MenuItem>
             download1
             </MenuItem>

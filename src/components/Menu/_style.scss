@@ -13,12 +13,12 @@
       &:hover, &:focus {
         text-decoration: none;
       }
-      &.is-disabled {
+      &.disabled {
         color: $menu-item-disabled-color;
         pointer-events: none;
         cursor: default;
       }
-      &.is-active, &:hover {
+      &.active, &:hover {
         color: $menu-item-active-color;
         border-bottom: $menu-item-active-border-width solid $menu-item-active-color;
       }
@@ -60,7 +60,7 @@
         cursor: pointer;
         transition: $menu-transition;
         color: $body-color;
-        &.is-active, &:hover {
+        &.active, &:hover {
           color: $menu-item-active-color !important;
         }
       }
@@ -90,7 +90,7 @@
     border-right: $menu-border-width solid $menu-border-color;
     >.menu-item {
       border-left: $menu-item-active-border-width solid transparent;
-      &.is-active, &:hover {
+      &.active, &:hover {
         border-bottom: 0px;
         border-left: $menu-item-active-border-width solid $menu-item-active-color;
       }

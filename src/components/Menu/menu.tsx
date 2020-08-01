@@ -79,7 +79,7 @@ const Menu:React.FC<MenuProps>=(props)=>{
 
     //return Menu HTML and CSS
     return (
-        <ul className={classes} style={style} data-testid='testid'>
+        <ul className={classes} style={style}>
             <MenuContent.Provider value={selectItem}>
                 {renderChildren()}
             </MenuContent.Provider> 

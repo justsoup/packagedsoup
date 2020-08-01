@@ -2,6 +2,7 @@ import React,{useContext,useState, FunctionComponentElement} from 'react'
 import classNames from 'classnames'
 import {MenuContent} from '../Menu/menu'
 import {MenuItemProps} from '../Menu/menuItem'
+import Icon from '../Icon/icon'
 
 //interface SubMenu
 export interface SubMenuProps{
@@ -34,7 +35,10 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
 
     //judge MenuItem active
     const classes=classNames('menu-item submenu-item',className,{
-        'active':context.index===index
+        'active':context.index===index,
+        'is-opened':menuOpen,
+        'is-vertical':context.mode==='vertical'
+
     })
 
     //click and change switch
@@ -86,6 +90,7 @@ const SubMenu:React.FC<SubMenuProps>=(props)=>{
         <li key={index} className={classes} {...hoveEvent}>
             <div className="submenu-title" {...clickEvent}>
                 {title}
+                <Icon icon='angle-down' className='arrow-icon' />
             </div>
             {renderChildren()}
         </li>
