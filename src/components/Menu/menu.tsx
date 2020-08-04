@@ -49,7 +49,6 @@ const Menu:React.FC<MenuProps>=(props)=>{
             onSelect(index)
         }
     }
-
     //select item
     const selectItem:IMenuContent={
         index:currentActive? currentActive:'0',

@@ -20,6 +20,7 @@ const Icon: React.FC<IconProps> = (props) =>{
     const classes=classNames('icon',className,{
         [`icon-${theme}`]:theme
     })
+    
     return (
         <FontAwesomeIcon className={classes} {...restProps}></FontAwesomeIcon>
     )
