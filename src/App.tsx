@@ -6,11 +6,11 @@ import MenuItem from './components/Menu/menuItem'
 import SubMenu from './components/Menu/subMenu'
 import Icon from './components/Icon/icon'
 import Input from './components/Input/input'
-import {AutoComplete} from './components/Input/autoComplete'
-
+import AutoComplete from './components/Input/autoComplete'
+import Upload from './components/Upload/upload'
 
 function App() {
-  const arg=['111','222','3333','555','abb']
+  const arg=['111','222','3333','555','abb','11SFDS','11243']
   const handleFetch=(query:string)=>{   
     return arg.filter(item=>item.includes(query))
   }
@@ -20,9 +20,22 @@ function App() {
       <h2>Name:{item}</h2>
     )
   }
+  const checkFileSize=(file:File)=>{
+    if(Math.round(file.size/1024)>100){
+      alert('file too big')
+      return false
+    }
+    //return new name
+    const newFile=new File([file],'new_name',{type:file.type})
+    return Promise.resolve(newFile)
+  }
 
   return (
     <div className="App">
+        <Upload 
+        action="http://jsonplaceholder.typicode.com/posts"
+        beforeUpload={checkFileSize}
+        />
         <AutoComplete 
           fetchSuggestion={handleFetch}
           renderOption={renderOption}
